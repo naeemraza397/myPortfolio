@@ -1,18 +1,44 @@
-import React from 'react';
-import PortfolioBlock from "./PortfolioBlock";
-import {Box, Grid} from "@mui/material";
-import {info} from "../../info/Info";
+import React from "react";
+import ProjectCard from "./ProjectCard";
+import { info } from "../../info/Info";
+import { Container } from "./styled";
 
-export default function Portfolio({innerRef}) {
-    return (
-        <Box id={'portfolio'} ref={innerRef}>
-            <Grid container display={'flex'} justifyContent={'center'}>
-                {info.portfolio.map((project, index) => (
-                   <Grid item xs={12} md={6} key={index}>
-                       <PortfolioBlock image={project.image} live={project.live} source={project.source} title={project.title} />
-                   </Grid>
-                ))}
-            </Grid>
-        </Box>
-    );
+const Portfolio = () => {
+  return (
+    <Container>
+      <a>
+        <p
+          style={{
+            fontSize: "45px",
+            fontStyle: "-moz-initial",
+            fontWeight: "bold",
+          }}
+        >
+          My Projects
+        </p>
+        <div
+          style={{
+            marginTop: 5,
+            height: "4px",
+            width: "21%",
+            backgroundColor: info.baseColor,
+            borderRadius: 55,
+          }}
+        />
+      </a>
+      <div style={{ height: "50px" }} />
+      {info.projectsList.map((project, index) => (
+        <div
+          key={index}
+          style={{
+            marginTop: index === 0 ? 0 : 60,
+          }}
+        >
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </Container>
+  );
 };
+
+export default Portfolio;
